@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">    
+<head>
+    <meta charset="utf-8">
+    <title>title: subtitle</title>
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+</head>
+ 
+<body>
+    <div class="reveal">
+        <div class="slides">
+<section id="completing-the-circuit" class="level1">
+<h1>Completing the Circuit</h1>
+<p>From Arduino to General Embedded Hardware</p>
+<p>by Scott Vokes</p>
+<!---
+So, this talk is about how to get your feet wet with general embedded hardware,
+if you only have a bit of experience with Arduino.
+--->
+
+</section>
+<section id="hi." class="level1">
+<h1>Hi.</h1>
+<ul>
+<li>I work for Atomic Object</li>
+<li>I'm @silentbicycle on twitter &amp; github</li>
+</ul>
+<!---
+atomicobject.com
+twitter.com/silentbicycle/
+github.com/silentbicycle/
+--->
+
+<figure>
+<img src="images/silentbicycle-avatar.png" />
+</figure>
+</section>
+<section id="whats-great-about-arduino" class="level1">
+<h1>What's great about Arduino</h1>
+<!---
++ lots of approachable intros for beginners!
++ designed so artists, designers, hobbyists, etc. can do cool stuff
++ not terribly expensive to get started, $25ish
++ consistent hardware package
++ lots of issues are handled upfront (USB ISP, power regulation, ...)
++ there is a path from Arduino prototypes to production devices
+
+--->
+
+</section>
+<section id="where-using-only-arduino-can-hold-you-back" class="level1">
+<h1>Where using only Arduino can hold you back</h1>
+<!---
++ not everything useful is available as a shield
++ shields are often expensive
++ order of magnitude more expensive than bare microcontrollers
++ the Arduino environment, vs. what's available for normal C
+--->
+
+</section>
+<section id="okay-so-how-do-we-get-off-of-prototyping-hardware" class="level1">
+<h1>Okay, so how do we get off of &quot;prototyping&quot; hardware</h1>
+</section>
+<section id="whats-in-an-arduino" class="level1">
+<h1>What's in an Arduino?</h1>
+<!---
++ Two ATmega328P chips
++ Voltage regulator, to clamp power to 5V DC
++ Attachments for USB and barrel-jack DC power
++ a standard PCB with conveniently labeled headers/pins
++ Capacitors, LEDs, etc.
+--->
+
+</section>
+<section id="bare-minimum-per-project" class="level1">
+<h1>Bare minimum (per project)</h1>
+<!---
++ An ATtiny, I like the ATtiny84
++ breadboard or perfboard
++ A voltage regulator, e.g. LM7805 (5V)
++ Capacitors, LEDs & resistors, etc.
+--->
+
+</section>
+<section id="how-much-does-that-cost" class="level1">
+<h1>How much does that cost?</h1>
+</section>
+<section id="typically-2-3." class="level1">
+<h1>Typically $2-3.</h1>
+</section>
+<section id="oh." class="level1">
+<h1>...oh.</h1>
+<!---
+Yeah, a lot of the commonly used hardware is quite cheap.
+--->
+
+</section>
+<section id="buying-parts" class="level1">
+<h1>Buying parts</h1>
+</section>
+<section id="sparkfun" class="level1">
+<h1>Sparkfun?</h1>
+<!---
+Sparkfun is nice. They have a decent selection of stuff, and the comment
+threads are often quite helpful. Still, you're trading the convenience
+of them selecting hardware for some markup, and if they don't carry
+something, you're out of luck. It's good to have other options as well.
+--->
+
+<figure>
+<img src="images/sfe-logo.png" />
+</figure>
+</section>
+<section id="digi-key-mouser-etc." class="level1">
+<h1>Digi-Key, Mouser, etc.</h1>
+<!---
+Now we're getting to big distributors -- hobbyists are only a small
+part of their business. They have massive selections, and usually far
+better prices because of economy of scale, but they take some
+getting used to.
+--->
+
+<p><img src="images/digikey_logo.jpg" /> <img src="images/mouser-logo.gif" /></p>
+</section>
+<section id="digi-key-can-be-intimidating-as-heck" class="level1">
+<h1>Digi-Key can be intimidating as heck</h1>
+<!---
+So, you want some white LEDs. You go to Digi-Key, and type in
+"white LED". Hey, so, which of these 12,592 different types
+were you're looking for?
+--->
+
+<figure>
+<img src="images/search_white_LEDs.png" />
+</figure>
+</section>
+<section id="records-matching-criteria-twenty-nine-bazillion" class="level1">
+<h1>&quot;Records matching criteria: twenty-nine bazillion&quot;</h1>
+<!---
+You need to know more about your needs to weed the options
+down further. How will the part be connected to your project?
+How many do you want? (3, or a reel of 3,000?) Are you willing
+to pay more for one that operates at -30*F?
+--->
+
+</section>
+<section id="section" class="level1">
+<h1></h1>
+<figure>
+<img src="images/troy-barnes-shock.png" />
+</figure>
+</section>
+<section id="what-does-any-of-this-even-mean-omg" class="level1">
+<h1>What Does Any of This Even Mean, OMG</h1>
+<!---
+Choosing an option or two can help weed things down significantly.
+There are usually a couple parts that are the main ones in stock,
+while others are 'available', and if you need something you can use
+with a breadboard, etc., that can limit things further.
+--->
+
+<figure>
+<img src="images/white_LED_listing.png" />
+</figure>
+</section>
+<section id="getting-parts-you-can-work-with" class="level1">
+<h1>Getting parts you can work with</h1>
+</section>
+<section id="dip-pins" class="level1">
+<h1>DIP: pins</h1>
+<!---
+Some parts are DIP ("dual in-line package"). These usually work with
+breadboards (though some have unusual spacing between pins). Other
+components are also called "through-hole" parts, because resistors,
+capacitors, etc. have wires that go through a perfboard or into a
+breadboard, rather than soldering flush with a board.
+--->
+
+<figure>
+<img src="images/dip_chips.jpg" />
+</figure>
+</section>
+<section id="soic-surface-mount-maybe" class="level1">
+<h1>SOIC: surface-mount (maybe)</h1>
+<!---
+With some practice, you can also use surface-mount components.
+
+"SMT Soldering: It's Easier Than You Think":
+    http://www.siliconfarmers.com/smtmanga/
+--->
+
+<figure>
+<img src="images/soic_by_realblades.jpg" />
+</figure>
+</section>
+<section id="things-youll-need" class="level1">
+<h1>Things you'll need</h1>
+<!---
+Since you're no longer using an Arduino as an all-in-one package,
+you will need some additional tools.
+--->
+
+</section>
+<section id="an-ispin-system-programmer" class="level1">
+<h1>An ISP<br>(In-System Programmer)</h1>
+<!---
+The most significant one is an ISP, which is used to flash compiled
+code into ROM of microcontrollers, like a firmware upgrade.
+--->
+
+</section>
+<section id="usbtinyisp-from-adafruit.com" class="level1">
+<h1>USBtinyISP from adafruit.com</h1>
+<!---
+I have one of these. It works pretty well. It can power the micro
+while connected, which is convenient.
+--->
+
+<figure>
+<img src="images/usbtinyisp.jpg" />
+</figure>
+</section>
+<section id="using-an-arduino-as-an-isp-arduinoisp-sketch" class="level1">
+<h1>Using an Arduino as an ISP: ArduinoISP sketch</h1>
+<!---
+You can also use an Arduino as an ISP. There is a sketch included
+with the Arduino platform, called "ArduinoISP". In the comments,
+it lists which pins you need to connect to your micro in order
+to flash it. Which pins you connect to on your micro depends;
+more on that in a minute.
+--->
+
+</section>
+<section id="youre-buying-a-whole-isp-with-every-arduino" class="level1">
+<h1>(You're buying a whole ISP with every Arduino, <span class="math">$$$</span>)</h1>
+</section>
+<section id="data-sheets" class="level1">
+<h1>Data sheets</h1>
+<p><blink>LEARN TO READ THEM.</blink></p>
+<!---
+Data sheets are where you can read about the gory details for
+a particular micro. While you probably won't have much use for
+some of the information for a while, if ever (such as thermal
+info for reflow soldering), they also have important info like
+pinouts, min/max power tables, timing info, example circuits,
+and details about registers that control important functionality.
+--->
+
+</section>
+<section id="pinout" class="level1">
+<h1>Pinout</h1>
+<!---
+Here's an example pin diagram, for an ATtiny84 (a nice small,
+cheap AVR microcontroller). If you look closely, you can see
+the power pin (VCC), the ground pin (GND), other pins used for
+programming (RESET, MISO, MOSI, SCL), pins for an external
+crystal/oscillator (XTAL1 & 2), and which pin is which when
+used for analog IO or GPIO.
+
+You'll get used to the abbreviations eventually.
+--->
+
+<figure>
+<img src="images/attiny84_pinout.jpg" />
+</figure>
+</section>
+<section id="avr-gcc-avr-libc" class="level1">
+<h1>AVR-GCC<br>&amp; AVR-libc</h1>
+<p>C compiler and runtime libraries for AVR microcontrollers <!---
+http://www.nongnu.org/avr-libc/
+http://www.nongnu.org/avr-libc/
+---></p>
+</section>
+<section id="avrdude" class="level1">
+<h1>AVRDUDE</h1>
+<p>Command-line tool for flashing AVR micros</p>
+<!---
+http://www.nongnu.org/avrdude/
+
+(Also, there's simulavr and AVaRICE, though I don't have
+time for them here.)
+--->
+
+</section>
+<section id="embedded-friendly-testing-tools" class="level1">
+<h1>Embedded-friendly testing tools</h1>
+<p>http://github.com/silentbicycle/greatest</p>
+<!---
+Due disclosure: I wrote greatest, so I'm a bit biased. :)
+--->
+
+</section>
+<section id="a-good-reference-book" class="level1">
+<h1>A good reference book</h1>
+<figure>
+<img src="images/PEfI_book.jpg" />
+</figure>
+</section>
+<section id="questionssilentbicycle" class="level1">
+<h1>Questions?<br><br>@silentbicycle</h1>
+</section>
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+    <script>
+        // Required, even if empty.
+        Reveal.initialize({
+            controls: false,
+            progress: false,
+            rollingLinks: false,
+            transition: "none",
+            maxScale: 10.0,
+        });
+    </script>
+</body>
+</html>
